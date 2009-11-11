@@ -1,0 +1,10 @@
+<h2>Courses</h2>
+
+<table>
+<% @courses.each do |course| %>
+	<tr>
+		<td class='name'><%= course.name %></td>
+		<td class='description'><%= course.description %></td>
+	</tr>
+<% end -%>
+</table>
