@@ -6,8 +6,8 @@ set :repository,  "git@github.com:arttu/rails-kurssi.git"
 set :scm, :git
 set :branch, "master"
 set :deploy_via, :copy
-
 set :deploy_to, "$HOME/application"
+set :keep_releases, 3
 
 set :gateway, "melkki"
 
@@ -17,6 +17,8 @@ role :db,  "rails", :primary => true # This is where Rails migrations will run
 
 before "deploy:restart", "deploy:migrate"
 after "deploy:symlink", "deploy:symlink_rails"
+after "deploy:symlink", "deploy:copy_configs"
+after "deploy", "deploy:cleanup"
 
 namespace :deploy do
   task :start do ; end
@@ -31,5 +33,9 @@ namespace :deploy do
   
   task :symlink_rails do
     run "ln -s $HOME/application/current $HOME/rails"
+  end
+  
+  task :copy_configs do
+    run "cp $HOME/database.yml rails/config/database.yml"
   end
 end
