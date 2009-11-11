@@ -3,7 +3,7 @@
 <table>
 <% @courses.each do |course| %>
 	<tr>
-		<td class='name'><%= course.name %></td>
+		<td><%= link_to course.name, course_path(course), :class => 'name' %></td>
 		<td class='description'><%= course.description %></td>
 	</tr>
 <% end -%>

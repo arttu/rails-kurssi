@@ -17,11 +17,11 @@ describe CoursesController do
     
     get "index"
     
-    response.should have_tag("td.name", "course1")
+    response.should have_tag("td>a.name", "course1")
     response.should have_tag("td.description", "desc1")
-    response.should have_tag("td.name", "course2")
+    response.should have_tag("td>a.name", "course2")
     response.should have_tag("td.description", "desc2")
-    response.should have_tag("td.name", "course3")
+    response.should have_tag("td>a.name", "course3")
     response.should have_tag("td.description", "desc3")
   end
 
@@ -31,6 +31,8 @@ describe CoursesController do
     get "show", :id => course.id
     
     response.should be_success
+
+    response.should have_tag('a[href=/courses]', 'Back to list')
     response.should have_tag('h3.course_name', 'sample course')
     response.should have_tag('p.description', 'very short description')
   end
