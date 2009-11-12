@@ -1,0 +1,51 @@
+* {
+	font-family: Helvetica, Arial, sans-serif;
+}
+
+body {
+	background-color: #f3ffea;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+a:hover {
+	text-decoration: underline;
+}
+
+div.header {
+	height: 14px;
+	padding: 4px;
+	font-size: 10px;
+	background-color: #ddd;
+}
+
+div.content {
+	padding: 5px 10px;
+}
+
+div.course.index {
+	padding: 5px 0px 5px 25px;
+}
+div.course.index:hover {
+	background-color: #eeeeaf;
+}
+
+div.course.show {
+	margin: 15px;
+}
+
+a.name {
+	font-weight: bold;
+	font-size: 14px;
+}
+a.back_to_index {
+	font-size: 14px;
+	color: #CC3300;
+}
+
+div.description {
+	font-size: 10px;
+	padding: 10px;
+}

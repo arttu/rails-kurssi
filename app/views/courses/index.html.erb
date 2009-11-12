@@ -1,10 +1,9 @@
 <h2>Courses</h2>
 
-<table>
+<div>
 <% @courses.each do |course| %>
-	<tr>
-		<td><%= link_to course.name, course_path(course), :class => 'name' %></td>
-		<td class='description'><%= course.description %></td>
-	</tr>
+	<div class="course index">
+		<div><%= link_to course.name, course_path(course), :class => 'name' %></div>
+	</div>
 <% end -%>
-</table>
+</div>

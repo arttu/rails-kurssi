@@ -17,12 +17,9 @@ describe CoursesController do
     
     get "index"
     
-    response.should have_tag("td>a.name", "course1")
-    response.should have_tag("td.description", "desc1")
-    response.should have_tag("td>a.name", "course2")
-    response.should have_tag("td.description", "desc2")
-    response.should have_tag("td>a.name", "course3")
-    response.should have_tag("td.description", "desc3")
+    response.should have_tag("div>a.name", "course1")
+    response.should have_tag("div>a.name", "course2")
+    response.should have_tag("div>a.name", "course3")
   end
 
   it "should one course" do
@@ -33,7 +30,7 @@ describe CoursesController do
     response.should be_success
 
     response.should have_tag('a[href=/courses]', 'Back to list')
-    response.should have_tag('h3.course_name', 'sample course')
-    response.should have_tag('p.description', 'very short description')
+    response.should have_tag('div.name', 'sample course')
+    response.should have_tag('div.description', 'very short description')
   end
 end

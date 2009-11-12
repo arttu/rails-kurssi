@@ -4,9 +4,13 @@
 		<%= stylesheet_link_tag "application" %>
 	</head>
 	
-	<body>
+	<body marginheight="0" marginwidth="0">
 		
+		<div class="header"><%= current_time %></div>
+		
+		<div class="content">
 		<%= yield %>
+		</div>
 		
 	</body>
 </html>

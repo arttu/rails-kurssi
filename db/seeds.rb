@@ -27,13 +27,13 @@ Usage:
   You must give me at least one existing resource to generate with a number in range of 0..1000.
   
   Optionally you can specify if the table(s) is/are going to be truncated
-  or not by adding a word 'TRUNCATE' to the command parameters.
+  or not by adding a parameter 'TRUNCATE=1' to the command parameters.
   
   By default the script is appending the data into tables.
   
   Examples of command:
    'rake db:seed Courses=100'
-   'rake db:seed Courses=500 TRUNCATE'
+   'rake db:seed Courses=500 TRUNCATE=1'
   
   Currently available resources you can use: #{collect_models.join(', ')}
   "
@@ -48,8 +48,8 @@ require 'random_data'
 record_counts.each do |record_and_count|
   record, count = record_and_count.split('=')
   
-  unless collect_models.include?(record) || (0..1001).include?(count.to_i)
-    puts "Not a valid resource ''#{record}' or number '#{count}' not in range of 0..1000."
+  unless collect_models.include?(record) || (0..1000).include?(count.to_i)
+    puts "Not a valid resource '#{record}' or number '#{count}' not in range of 0..1000."
     next
   end
   
@@ -70,7 +70,7 @@ record_counts.each do |record_and_count|
               when :string
                 Random.alphanumeric
               when :text
-                Random.paragraphs(Random.number(3))
+                Random.paragraphs(Random.number(2)+1).strip
               when :date, :datetime
                 Random.date
               end

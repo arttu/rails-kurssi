@@ -1,5 +1,6 @@
-<%= link_to('Back to list', courses_path) %>
+<%= link_to('Back to list', courses_path, :class => 'back_to_index') %>
 
-<h3 class="course_name"><%= @course.name %></h3>
-
-<p class="description"><%= @course.description %></p>
+<div class="course show">
+	<div class="name"><%= @course.name %></div>
+	<div class="description"><%= nl2br(@course.description) %></div>
+</div>
