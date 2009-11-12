@@ -22,7 +22,7 @@ describe CoursesController do
     response.should have_tag("div>a.name", "course3")
   end
 
-  it "should one course" do
+  it "should show one course" do
     course = Course.create(:name => "sample course", :description => "very short description")
     
     get "show", :id => course.id
@@ -32,5 +32,33 @@ describe CoursesController do
     response.should have_tag('a[href=/courses]', 'Back to list')
     response.should have_tag('div.name', 'sample course')
     response.should have_tag('div.description', 'very short description')
+  end
+  
+  it "should show new course form" do
+    get "new"
+    
+    response.should be_success
+    
+    response.should have_tag('form[action=/courses][method=post]')
+    response.should have_tag('input[id=course_name]')
+    response.should have_tag('textarea[id=course_description]')
+  end
+  
+  it "should create course" do
+    lambda {
+      post "create", :course => {:name => 'testing', :description => 'course creation'}
+    }.should change(Course, :count).by(1)
+    
+    response.should be_redirect
+    response.should redirect_to(course_path(assigns(:course)))
+  end
+  
+  it "should redirect to new if create fails" do
+    lambda {
+      post "create", :course => {:name => 'x', :description => 'course creation'}
+    }.should_not change(Course, :count)
+    
+    response.should render_template('courses/new')
+    response.should have_text(/Name is too short/)
   end
 end
