@@ -1,4 +1,6 @@
 class CoursesController < ApplicationController
+  before_filter :require_user, :only => [:edit, :update, :new, :create]
+
   def index
     @courses = Course.all
   end

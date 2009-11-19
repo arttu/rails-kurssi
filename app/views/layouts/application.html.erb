@@ -6,7 +6,7 @@
 	
 	<body marginheight="0" marginwidth="0">
 		
-		<div class="header"><%= current_time %></div>
+		<div class="header"><%= link_to("Home", root_url) %> | <%= current_time %> | <%= render :partial => @current_user.present? ? "shared/logged_in_user" : "shared/login_form" %></div>
 		
 		<div class="content">
 		<%= yield %>
