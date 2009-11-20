@@ -33,4 +33,10 @@ class UsersController < ApplicationController
       render :action => :edit
     end
   end
+  
+  def destroy
+    @current_user.destroy
+    flash[:notice] = "Account destroyed!"
+    redirect_to root_url
+  end
 end
