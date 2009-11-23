@@ -49,3 +49,7 @@ Spec::Runner.configure do |config|
   #
   # For more information take a look at Spec::Runner::Configuration and Spec::Runner
 end
+
+# these are for testing actions that need a logged in user
+require 'authlogic/test_case'
+require 'spec/shared/logged_in_user'

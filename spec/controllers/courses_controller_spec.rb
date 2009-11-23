@@ -33,8 +33,17 @@ describe CoursesController do
     response.should have_tag('div.name', 'sample course')
     response.should have_tag('div.description', 'very short description')
   end
+end
+
+describe CoursesController, "login required" do
+  setup :activate_authlogic
   
+  integrate_views
+
+  it_should_behave_like "logged in user"
+
   it "should show new course form" do
+    
     get "new"
     
     response.should be_success
