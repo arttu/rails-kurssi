@@ -1,0 +1,12 @@
+<%= link_to('Back to list', subjects_path, :class => 'back_to_index') %>
+
+<h3>Create a new subject</h3>
+<% form_for(@subject, :html => {:class => 'validate'}) do |f| %>
+	<p><%= f.error_messages %></p>
+	<%= f.label :name %><br />
+	<%= f.text_field :name %><br />
+	<%= f.label :description %><br />
+	<%= f.text_area :description %><br />
+	<br />
+	<%= f.submit "Create" %>
+<% end %>

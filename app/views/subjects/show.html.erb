@@ -1,0 +1,6 @@
+<%= link_to('Back to list', subjects_path, :class => 'back_to_index') %>
+
+<div class="subject show">
+	<div class="name"><%= @subject.name %></div>
+	<div class="description"><%= nl2br(@subject.description) %></div>
+</div>

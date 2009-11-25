@@ -1,0 +1,13 @@
+<%= flash[:notice] if flash[:notice] %>
+
+<h2>Subjects</h2>
+
+<h5>> <%= link_to("Create a new subject", new_subject_path) %></h5>
+
+<div>
+<% @subjects.each do |subject| %>
+	<div class="subject index">
+		<div><%= link_to subject.name, subject_path(subject), :class => 'name' %></div>
+	</div>
+<% end -%>
+</div>
