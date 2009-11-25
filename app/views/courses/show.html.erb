@@ -1,6 +1,19 @@
-<%= link_to('Back to list', courses_path, :class => 'back_to_index') %>
+<%= link_to('Back to subject', subject_path(@course.subject), :class => 'back_to_index') %>
 
 <div class="course show">
 	<div class="name"><%= @course.name %></div>
 	<div class="description"><%= nl2br(@course.description) %></div>
 </div>
+
+<hr>
+
+Exercise groups:
+
+<ul>
+<% @course.exercise_groups.each do |eg| %>
+	<li>
+		<%= eg.starts_at.strftime("%a") %> <%= eg.starts_at.strftime("%H") %>-<%= eg.ends_at.strftime("%H") %> <%= eg.classroom %>
+		<%= subject_course_exercise_group_path(@course.subject, @course, eg) %>
+	</li>
+<% end %>
+</ul>

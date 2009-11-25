@@ -24,6 +24,8 @@ describe SubjectsController do
 
   it "should show one subject" do
     subject = Subject.create(:name => "sample subject", :description => "very short description")
+    course1 = subject.courses.create(:name => "subject's sample course", :label => "sample course", :description => "course description")
+    course2 = subject.courses.create(:name => "subject's second sample course", :label => "second sample course", :description => "new course description")
     
     get "show", :id => subject.id
     
@@ -32,6 +34,9 @@ describe SubjectsController do
     response.should have_tag('a[href=/subjects]', 'Back to list')
     response.should have_tag('div.name', 'sample subject')
     response.should have_tag('div.description', 'very short description')
+
+    response.should have_tag("a[href=/subjects/#{subject.id}/courses/#{course1.id}]", 'sample course')
+    response.should have_tag("a[href=/subjects/#{subject.id}/courses/#{course2.id}]", 'second sample course')
   end
 end
 

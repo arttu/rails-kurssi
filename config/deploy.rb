@@ -39,3 +39,19 @@ namespace :deploy do
     run "cp $HOME/database.yml rails/config/database.yml"
   end
 end
+
+namespace :db do
+  task :load_sample_data do
+    puts ". $HOME/.railsrc.conf; cd $HOME/rails; rake db:seed #{ARGV[1..-1].join(" ")}"
+  end
+end
+
+namespace :logs do
+  task :show_last_100 do
+    run ". $HOME/.railsrc.conf; cd $HOME/rails; tail -n 100 log/production.log"
+  end
+  
+  task :tail do
+    run ". $HOME/.railsrc.conf; cd $HOME/rails; tail -f log/production.log"
+  end
+end

@@ -1,7 +1,12 @@
 ActionController::Routing::Routes.draw do |map|
   map.resource :user_session
   map.resources :users
-  map.resources :subjects
+  map.resources :subjects do |subjects|
+    subjects.resources :courses do |courses|
+      courses.resources :exercise_groups
+    end
+  end
+  map.resources :courses, :path_prefix => '/subjects/:subject_id'
   map.resource :account, :controller => "users"
   map.resources :users
   

@@ -1,4 +1,5 @@
 class Course < ActiveRecord::Base
+  belongs_to :subject
   
-  validates_length_of :name, :minimum => 3
+  has_many :exercise_groups, :dependent => :destroy
 end
