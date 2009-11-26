@@ -7,6 +7,6 @@
 
 <ul>
 <% @subject.courses.each do |course| %>
-	<li><%= link_to(course.label, subject_course_path(@subject, course)) %> <%= subject_course_path(@subject, course) %></li>
+	<li><%= link_to(course.label, subject_course_path(@subject, course)) %></li>
 <% end %>
 </ul>

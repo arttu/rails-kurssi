@@ -63,6 +63,10 @@ record_counts.each do |record_and_count|
   cols = record.columns
   cols.delete_if { |col| [:id, :created_at, :updated_at].include?(col.name.to_sym) }
   
+  def model_for_column(col_name)
+    col_name.gsub('_id','').camelize.constantize
+  end
+  
   count.times do |i|
     new_record = record.new
     cols.each do |col|
@@ -71,8 +75,19 @@ record_counts.each do |record_and_count|
                 Random.alphanumeric
               when :text
                 Random.paragraphs(Random.number(2)+1).strip
-              when :date, :datetime
-                Random.date
+              when :date
+                Random.date_between(0.5.year.ago.to_date..Time.now.to_date)
+              when :datetime
+                Random.date_between(0.5.year.ago.to_date..Time.now.to_date).to_time + Random.number(1.day)
+              when :integer
+                if col.name.ends_with?('_id')
+                  m = model_for_column(col.name).first(:order => "random()")
+                  m.present? ? m.id : nil
+                else
+                  Random.number(1000)
+                end
+              else
+                nil
               end
       new_record.send("#{col.name}=".to_sym, value)
     end
