@@ -42,7 +42,7 @@ end
 
 namespace :db do
   task :load_sample_data do
-    puts ". $HOME/.railsrc.conf; cd $HOME/rails; rake db:seed #{ARGV[1..-1].join(" ")}"
+    run ". $HOME/.railsrc.conf; cd $HOME/rails; rake db:seed #{ARGV[1..-1].join(" ")}"
   end
 end
 
