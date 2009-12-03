@@ -9,4 +9,13 @@ class ExerciseGroupsController < ApplicationController
     redirect_to subject_course_path(eg.course.subject, eg.course)
   end
 
+  def email_form
+    @eg = ExerciseGroup.find(params[:id])
+  end
+  
+  def send_email
+    eg = ExerciseGroup.find(params[:id])
+    eg.send_email_to_attendees(:email => params[:email])
+    redirect_to subject_course_path(eg.course.subject, eg.course)
+  end
 end

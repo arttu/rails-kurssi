@@ -10,4 +10,14 @@ class ExerciseGroup < ActiveRecord::Base
   def register_student!(student)
     self.students << student unless self.course.exercise_groups.map(&:students).flatten.include?(student)
   end
+  
+  def send_email_to_attendees(opts)
+    email = {:subject => opts[:email][:subject], :message => opts[:email][:message]}
+    
+    email[:recipients] = self.students.map(&:email).compact.join('; ')
+    return if email[:recipients].size.zero?
+    
+    mail = ExerciseGroupMailer.create_email_to_attendees(email)
+    ExerciseGroupMailer.deliver(mail)
+  end
 end

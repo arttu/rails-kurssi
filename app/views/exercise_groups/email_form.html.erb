@@ -1,0 +1,10 @@
+<h3>Send an email to attendees</h3>
+
+Course: <%= @eg.course.name %><br />
+Exercise group: <%= @eg.starts_at.strftime("%a") %> <%= @eg.starts_at.strftime("%H") %>-<%= @eg.ends_at.strftime("%H") %> <%= @eg.classroom %><br />
+<br />
+<% form_tag send_email_subject_course_exercise_group_path(@eg.course.subject, @eg.course, @eg) do %>
+	Subject: <%= text_field_tag 'email[subject]' %><br />
+	Message: <%= text_area_tag 'email[message]', nil, :rows => 10, :cols => 40 %><br />
+	<%= submit_tag 'Send email' %>
+<% end %>

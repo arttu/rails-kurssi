@@ -57,3 +57,7 @@ div.description {
 	font-size: 10px;
 	padding: 10px;
 }
+
+form.button-to {
+	display: inline;
+}

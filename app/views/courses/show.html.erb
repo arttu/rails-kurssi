@@ -14,6 +14,7 @@ Exercise groups:
 	<li>
 		<%= eg.starts_at.strftime("%a") %> <%= eg.starts_at.strftime("%H") %>-<%= eg.ends_at.strftime("%H") %> <%= eg.classroom %>
 		<%= button_to("Register to course", register_subject_course_exercise_group_path(@course.subject, @course, eg)) %>
+		<%= button_to("Send email to attendees", email_form_subject_course_exercise_group_path(@course.subject, @course, eg), :method => :get) %>
 	</li>
 <% end %>
 </ul>
