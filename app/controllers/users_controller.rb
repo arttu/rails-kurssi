@@ -9,6 +9,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
+      NewsfeedEvent.create(:text => "A new user was registered: #{@user.login}")
       flash[:notice] = "Account registered!"
       redirect_back_or_default account_url
     else

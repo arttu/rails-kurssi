@@ -3,6 +3,7 @@ class SubjectsController < ApplicationController
 
   def index
     @subjects = Subject.all
+    @newsfeed_events = NewsfeedEvent.newest(15)
   end
   
   def show
@@ -17,6 +18,7 @@ class SubjectsController < ApplicationController
     @subject = Subject.new(params[:subject])
     
     if @subject.save
+      NewsfeedEvent.create(:text => "A new subject was created: #{@subject.name}")
       redirect_to subject_path(@subject)
     else
       render(:action => 'new')

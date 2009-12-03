@@ -1,13 +1,22 @@
 <%= flash[:notice] if flash[:notice] %>
 
-<h2>Subjects</h2>
-
 <h5>> <%= link_to("Create a new subject", new_subject_path) %></h5>
 
-<div>
+<table>
+	<tr>
+		<td align='left' valign='top' width='40%'>
+			<div>
+				<h3>Subjects</h3>
 <% @subjects.each do |subject| %>
-	<div class="subject index">
-		<div><%= link_to subject.name, subject_path(subject), :class => 'name' %></div>
-	</div>
+				<div class="subject index">
+					<div><%= link_to subject.name, subject_path(subject), :class => 'name' %></div>
+				</div>
 <% end -%>
-</div>
+			</div>
+		</td>
+		<td align='left' valign='top' width='40%'>
+			<h3>Newsfeed</h3>
+			<%= render :partial => 'shared/newsfeed_event', :collection => @newsfeed_events %>
+		</td>
+	</tr>
+</table>

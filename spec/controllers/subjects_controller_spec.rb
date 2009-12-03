@@ -7,7 +7,7 @@ describe SubjectsController do
     get "index"
     
     response.should be_success
-    response.should have_tag("h2", "Subjects")
+    response.should have_tag("h3", "Subjects")
   end
   
   it "should show three subjects" do
@@ -58,19 +58,23 @@ describe SubjectsController, "login required" do
     response.should have_tag('textarea[id=subject_description]')
   end
   
-  it "should create subject" do
+  it "should create subject and a newsfeed event for that" do
     lambda {
-      post "create", :subject => {:name => 'testing', :description => 'subject creation'}
-    }.should change(Subject, :count).by(1)
+      lambda {
+        post "create", :subject => {:name => 'testing', :description => 'subject creation'}
+      }.should change(Subject, :count).by(1)
+    }.should change(NewsfeedEvent, :count).by(1)
     
     response.should be_redirect
     response.should redirect_to(subject_path(assigns(:subject)))
   end
   
-  it "should redirect to new if create fails" do
+  it "should redirect to new if create fails and not create a newsfeed event" do
     lambda {
-      post "create", :subject => {:name => 'x', :description => 'subject creation'}
-    }.should_not change(Subject, :count)
+      lambda {
+        post "create", :subject => {:name => 'x', :description => 'subject creation'}
+      }.should_not change(Subject, :count)
+    }.should_not change(NewsfeedEvent, :count)
     
     response.should render_template('subjects/new')
     response.should have_text(/Name is too short/)
