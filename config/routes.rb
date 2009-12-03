@@ -3,7 +3,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users
   map.resources :subjects do |subjects|
     subjects.resources :courses do |courses|
-      courses.resources :exercise_groups
+      courses.resources :exercise_groups, :member => {:register => :post}
     end
   end
   map.resources :courses, :path_prefix => '/subjects/:subject_id'

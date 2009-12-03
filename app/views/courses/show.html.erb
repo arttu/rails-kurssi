@@ -13,6 +13,7 @@ Exercise groups:
 <% @course.exercise_groups.starting_this_year.each do |eg| %>
 	<li>
 		<%= eg.starts_at.strftime("%a") %> <%= eg.starts_at.strftime("%H") %>-<%= eg.ends_at.strftime("%H") %> <%= eg.classroom %>
+		<%= button_to("Register to course", register_subject_course_exercise_group_path(@course.subject, @course, eg)) %>
 	</li>
 <% end %>
 </ul>
