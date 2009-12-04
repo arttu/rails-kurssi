@@ -13,6 +13,15 @@ Exercise groups:
 <% @course.exercise_groups.starting_this_year.each do |eg| %>
 	<li>
 		<%= eg.starts_at.strftime("%a") %> <%= eg.starts_at.strftime("%H") %>-<%= eg.ends_at.strftime("%H") %> <%= eg.classroom %>
+<% if eg.students.size > 0 %>
+		<br />
+		<b>Attending students:</b>
+		<ul>
+		<% eg.students.each do |s| %>
+			<li><%= s.login %></li>
+		<% end %>
+		</ul>
+<% end %>
 		<%= button_to("Register to course", register_subject_course_exercise_group_path(@course.subject, @course, eg)) %>
 		<%= button_to("Send email to attendees", email_form_subject_course_exercise_group_path(@course.subject, @course, eg), :method => :get) %>
 	</li>
