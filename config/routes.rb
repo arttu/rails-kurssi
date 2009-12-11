@@ -10,6 +10,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resource :account, :controller => "users"
   map.resources :users
   
+  map.connect 'account/:login', :controller => "users", :action => "show"
+  map.connect 'account/:login/become_a_friend', :controller => "users", :action => "become_a_friend"
+  
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
   

@@ -20,4 +20,8 @@ class ExerciseGroup < ActiveRecord::Base
     mail = ExerciseGroupMailer.create_email_to_attendees(email)
     ExerciseGroupMailer.deliver(mail)
   end
+  
+  def description
+    "#{self.starts_at.strftime("%a")} #{self.starts_at.strftime("%H")}-#{self.ends_at.strftime("%H")} #{self.classroom}"
+  end
 end

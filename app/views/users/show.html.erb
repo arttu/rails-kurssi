@@ -1,48 +1,21 @@
-<p>
-  <b>Login:</b>
-  <%=h @user.login %>
-</p>
+<%= link_to 'Edit', edit_account_path %>
+<%= link_to 'Delete account', user_path(current_user), :method => "delete", :confirm => "Are you sure you want to delete your account?" %>
 
-<p>
-  <b>Email:</b>
-  <%=h @user.email %>
-</p>
+<table>
+	<tr>
+		<th>Login</th>
+		<th>Email</th>
+		<th>Studentnumber</th>
+	</tr>
+	<tr>
+		<td><%=h @user.login %></td>
+		<td><%=h @user.email %></td>
+		<td><%=h @user.studentnumber %></td>
+	</tr>
+</table>
 
-<p>
-  <b>Student number:</b>
-  <%=h @user.studentnumber %>
-</p>
+<%= link_to("Become a friend!", "/account/#{@user.login}/become_a_friend") unless current_user.friends_with?(@user) %>
 
-<p>
-  <b>Login count:</b>
-  <%=h @user.login_count %>
-</p>
- 
-<p>
-  <b>Last request at:</b>
-  <%=h @user.last_request_at %>
-</p>
- 
-<p>
-  <b>Last login at:</b>
-  <%=h @user.last_login_at %>
-</p>
- 
-<p>
-  <b>Current login at:</b>
-  <%=h @user.current_login_at %>
-</p>
- 
-<p>
-  <b>Last login ip:</b>
-  <%=h @user.last_login_ip %>
-</p>
- 
-<p>
-  <b>Current login ip:</b>
-  <%=h @user.current_login_ip %>
-</p>
- 
- 
-<%= link_to 'Edit', edit_account_path %><br />
-<%= link_to 'Delete account', user_path(@current_user), :method => "delete", :confirm => "Are you sure you want to delete your account?" %>
+<h3>Your registrations</h3>
+
+<%= render :partial => 'course_registration', :collection => @user.course_registrations %>

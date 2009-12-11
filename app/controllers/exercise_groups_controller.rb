@@ -2,7 +2,7 @@ class ExerciseGroupsController < ApplicationController
   def register
     eg = ExerciseGroup.find(params[:id])
     if eg.register_student!(@current_user)
-      NewsfeedEvent.create(:text => "#{@current_user.login} thinks to attend #{eg.course.name}, #{eg.starts_at.strftime("%a")} #{eg.starts_at.strftime("%H")}-#{eg.ends_at.strftime("%H")} #{eg.classroom}")
+      NewsfeedEvent.create(:text => "#{@current_user.login} thinks to attend #{eg.description}")
       flash[:notice] = "You were registered to this course"
     else
       flash[:notice] = "Your registration failed. Please check if you already are on some of the exercise groups."

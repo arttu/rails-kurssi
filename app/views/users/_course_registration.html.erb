@@ -1,0 +1,4 @@
+<div class='course_registration'>
+	<h5><%= link_to "#{course_registration.exercise_group.course.subject.name} / #{course_registration.exercise_group.course.label}", subject_course_path(course_registration.exercise_group.course.subject, course_registration.exercise_group.course) %></h5>
+	<span><%= course_registration.exercise_group.description %></span>
+</div>

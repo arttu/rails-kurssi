@@ -61,3 +61,15 @@ div.description {
 form.button-to {
 	display: inline;
 }
+
+div.course_registration {
+	border-top: 1px solid #ccc;
+	padding: 3px;
+}
+div.course_registration > h5 {
+	margin: 3px;
+}
+div.course_registration > span {
+	margin: 3px;
+	font-size: 14px;
+}

@@ -12,13 +12,13 @@ Exercise groups:
 <ul>
 <% @course.exercise_groups.starting_this_year.each do |eg| %>
 	<li>
-		<%= eg.starts_at.strftime("%a") %> <%= eg.starts_at.strftime("%H") %>-<%= eg.ends_at.strftime("%H") %> <%= eg.classroom %>
+		<%= eg.description %>
 <% if eg.students.size > 0 %>
 		<br />
 		<b>Attending students:</b>
 		<ul>
-		<% eg.students.each do |s| %>
-			<li><%= s.login %></li>
+		<% eg.students.compact.each do |s| %>
+			<li><%= link_to s.login, "/account/#{s.login}" %> <%= link_to('Become a friend!', "/account/#{s.login}/become_a_friend") unless @current_user.friends_with?(s) %></li>
 		<% end %>
 		</ul>
 <% end %>
