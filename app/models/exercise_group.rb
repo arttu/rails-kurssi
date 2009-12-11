@@ -8,6 +8,7 @@ class ExerciseGroup < ActiveRecord::Base
   named_scope :starting_this_year, :conditions => ["starts_at >= ? and starts_at < ?", Date.new(Time.now.year), Date.new(Time.now.year) + 1.year]
   
   def register_student!(student)
+    raise "Exercise group full!" if self.students.count >= self.max_students
     self.students << student unless self.course.exercise_groups.map(&:students).flatten.include?(student)
   end
   
