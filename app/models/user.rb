@@ -13,5 +13,6 @@ class User < ActiveRecord::Base
   
   def become_a_friend_with(user)
     self.friends << user
+    NewsfeedEvent.create(:text => "#{self.login} added #{user.login} as a friend")
   end
 end
