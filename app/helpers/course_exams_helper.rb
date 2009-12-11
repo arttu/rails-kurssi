@@ -1,0 +1,2 @@
+module CourseExamsHelper
+end

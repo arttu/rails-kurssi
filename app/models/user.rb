@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   acts_as_authentic
   
   has_many :course_registrations
+  has_many :course_exam_registrations
   
   has_many :friends, :through => :friendships
   has_many :friendships, :dependent => :destroy

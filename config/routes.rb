@@ -3,6 +3,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users
   map.resources :subjects do |subjects|
     subjects.resources :courses do |courses|
+      courses.resources :course_exams, :member => {:register => :post}
       courses.resources :exercise_groups, :member => {:register => :post, :email_form => :get, :send_email => :post}
     end
   end
